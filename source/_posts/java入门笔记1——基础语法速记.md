@@ -80,6 +80,7 @@ set.add(1); // 无效，重复
 ### Map (键值对)
 ```java
 Map<String, Integer> map = new HashMap<>();
+HashMap<Character, Integer> map2 = new HashMap<Character, Integer>();
 map.put("Java", 100);
 map.put("Python", 90);
 Integer score = map.get("Java");
