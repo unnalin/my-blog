@@ -3,7 +3,7 @@ title: java入门笔记1——基础语法速记
 date: 2025-12-06 19:39:44
 tags:
 ---
-**大概记录一下写leetcode会用到的语法ww**
+**大概记录一下java基础语法ww**
 
 ## 1. 数据类型与变量
 
@@ -43,6 +43,10 @@ int[] arr = {1, 2};   // 数组
 int[] arr = new int[5];        // 定义大小
 int[] arr2 = {1, 2, 3, 4, 5};  // 初始化
 int len = arr2.length;         // 获取长度
+// string转char数组
+String p = "";
+int[] arr3 = p.toCharArray(); 
+boolean a = Arrays.equal("JAVA", "java"); // 判断是否相同
 ```
 
 ### 字符串 (String - 不可变)
