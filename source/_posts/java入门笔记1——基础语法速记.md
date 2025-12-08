@@ -40,7 +40,7 @@ int[] arr = {1, 2};   // 数组
 
 ### 数组
 ```java
-int[] arr = new int[5];        // 定义大小
+int[] arr = new int[5];        // 定义大小，默认全0
 int[] arr2 = {1, 2, 3, 4, 5};  // 初始化
 int len = arr2.length;         // 获取长度
 // string转char数组
