@@ -39,6 +39,7 @@ int[] arr = {1, 2};   // 数组
 ## 3. 数组与字符串 (Array & String)
 
 ### 数组
+数组是Java语言内置的、最基本的数据结构。数组在创建时固定大小，无法动态改变。数组提供的方法很少，只有基本的访问和赋值操作。Java 支持锯齿数组，在 Java 中，二维数组实际上是 "数组的数组"
 ```java
 int[] arr = new int[5];        // 定义大小，默认全0
 int[] arr2 = {1, 2, 3, 4, 5};  // 初始化
@@ -47,6 +48,19 @@ int len = arr2.length;         // 获取长度
 String p = "";
 int[] arr3 = p.toCharArray(); 
 boolean a = Arrays.equal("JAVA", "java"); // 判断是否相同
+
+
+// 这是一个包含3个一维数组的数组
+int[][] matrix = new int[3][];  // 只指定了第一维
+
+// 每个一维数组可以独立创建，长度可以不同
+matrix[0] = new int[2];  // 第一行有2个元素
+matrix[1] = new int[5];  // 第二行有5个元素
+matrix[2] = new int[3];  // 第三行有3个元素
+
+// arraycopy
+System.arraycopy(newArr, 0, nums, 0, n);
+
 ```
 
 ### 字符串 (String - 不可变)
@@ -64,6 +78,7 @@ String[] parts = s.split(","); // 分割
 需导入: `import java.util.*;`
 
 ### List (有序，可重复)
+List是一个接口，ArrayList是List接口的一个实现类（基于动态数组）。ArrayList是动态数组，可以自动扩容，因此可以动态增长。ArrayList作为集合框架的一部分，提供了丰富的方法，如添加、删除、查找、排序等。
 ```java
 List<String> list = new ArrayList<>();
 list.add("A");
@@ -72,6 +87,10 @@ String s = list.get(0); // 获取
 list.remove(0);         // 删除
 int size = list.size();
 boolean has = list.contains("A");
+ans.isEmpty() // 判断是否为空
+ans.size() // list大小
+
+int[][] res = ans.toArray(new int[ans.size()][]); // 转二维array
 ```
 
 ### Set (无序，不可重复)
@@ -94,3 +113,15 @@ boolean hasKey = map.containsKey("Java");
 for (String key : map.keySet()) { ... } // 遍历键
 for (Map.Entry<String, Integer> entry : map.entrySet()) { ... } // 遍历键值对
 ```
+## 常用函数
+### 排序
+```java
+// 对数组 第一个是要排序的数组，第二个参数是比较器 Comparator，定义排序规则
+Arrays.sort(array, comparator)
+// 来自hot100 56合并区间
+// 对二维数组的排序（按第零位），Comparator.comparingInt是一个静态工厂方法，它接收一个函数作为参数，这个函数从要比较的对象中提取一个int类型的键（key），然后根据这个键进行排序。在这个例子中，我们传递了一个lambda表达式：a -> a[0]。这里的a表示二维数组中的一个元素（即一个一维数组），a[0]就是取这个一维数组的第一个元素（即区间的起始值）。所以，这个比较器会按照每个区间的起始值进行排序。
+Arrays.sort(array, Comparator.comparingInt(a -> a[0]));
+// 默认情况下，Comparator.comparingInt是按照升序排序的。如果我们想要降序排序，可以这样写：
+Arrays.sort(intervals, Comparator.comparingInt(a -> a[0]).reversed());
+// 此外，如果起始值相同，我们可能还需要按照第二个元素（结束值）进行排序，那么我们可以使用thenComparing方法：
+Arrays.sort(intervals, Comparator.comparingInt(a -> a[0]).thenComparingInt(a -> a[1]));
