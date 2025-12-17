@@ -58,8 +58,21 @@ matrix[0] = new int[2];  // 第一行有2个元素
 matrix[1] = new int[5];  // 第二行有5个元素
 matrix[2] = new int[3];  // 第三行有3个元素
 
+// 可以clone数组里的内容，假设matrix是n*n二维数组
+int[][] temp = new int [n][];
+for (int i = 0; i < n; i++) temp[i] = matrix[i].clone(); // 复制了数组每一行的内容
+
 // arraycopy
 System.arraycopy(newArr, 0, nums, 0, n);
+// 语法如下所示：
+/*
+    src：源数组（从哪个数组复制数据）
+    srcPos：源数组的起始位置（从源数组的哪个索引开始复制）
+    dest：目标数组（复制到哪个数组）
+    destPos：目标数组的起始位置（从目标数组的哪个索引开始粘贴）
+    length：要复制的元素数量
+*/
+System.arraycopy(Object src, int srcPos, Object dest, int destPos, int length)
 
 ```
 
