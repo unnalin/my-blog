@@ -53,7 +53,7 @@ boolean a = Arrays.equal("JAVA", "java"); // 判断是否相同
 // 这是一个包含3个一维数组的数组
 int[][] matrix = new int[3][];  // 只指定了第一维
 
-// 每个一维数组可以独立创建，长度可以不同
+// 5555555555每个一维数组可以独立创建，长度可以不同
 matrix[0] = new int[2];  // 第一行有2个元素
 matrix[1] = new int[5];  // 第二行有5个元素
 matrix[2] = new int[3];  // 第三行有3个元素

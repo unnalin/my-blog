@@ -148,7 +148,7 @@ index_top_img_height:
 
 # The subtitle on homepage
 subtitle:
-  enable: false
+  enable: true
   # Typewriter Effect
   effect: true
   # Customize typed.js
@@ -162,8 +162,16 @@ subtitle:
   # 2 - https://api.aa1.cn/doc/yiyan.html
   # 3 - jinrishici.com
   source: false
-  # If you close the typewriter effect, the subtitle will only show the first line of sub
-  sub:
+
+  startDelay: 300 # time before typing starts in milliseconds
+  typeSpeed: 150 # type speed in milliseconds
+  backSpeed: 50 # backspacing speed in milliseconds
+  loop: true #循环打字，这个功能不好用，无论是true还是false都会循环打印，后其再找问题吧
+  source: false #可以直接配置第三方网站，需查询相应网站配置说明，false表示关闭调用第三方服务提供的文案，可选的网站有：https://hitokoto.cn/、 http://yijuzhan.com/、https://www.jinrishici.com/
+  sub: #如果关闭打字效果，subtitle 只会显示 sub 的第一行文字
+    - 今日事;今日毕
+    - Never put off till tomorrow what you can do today
+
 
 # Article layout on the homepage
 # 1: Cover on the left, info on the right
