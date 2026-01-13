@@ -62,6 +62,14 @@ matrix[2] = new int[3];  // 第三行有3个元素
 int[][] temp = new int [n][];
 for (int i = 0; i < n; i++) temp[i] = matrix[i].clone(); // 复制了数组每一行的内容
 
+// int数组的循环
+int[] nums = new int [];
+int res = 0;
+……
+for (int num : nums){
+    res ^= num;
+}
+
 // arraycopy
 System.arraycopy(newArr, 0, nums, 0, n);
 // 语法如下所示：
