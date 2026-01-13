@@ -53,7 +53,7 @@ boolean a = Arrays.equal("JAVA", "java"); // 判断是否相同
 // 这是一个包含3个一维数组的数组
 int[][] matrix = new int[3][];  // 只指定了第一维
 
-// 5555555555每个一维数组可以独立创建，长度可以不同
+// 每个一维数组可以独立创建，长度可以不同
 matrix[0] = new int[2];  // 第一行有2个元素
 matrix[1] = new int[5];  // 第二行有5个元素
 matrix[2] = new int[3];  // 第三行有3个元素
@@ -61,6 +61,9 @@ matrix[2] = new int[3];  // 第三行有3个元素
 // 可以clone数组里的内容，假设matrix是n*n二维数组
 int[][] temp = new int [n][];
 for (int i = 0; i < n; i++) temp[i] = matrix[i].clone(); // 复制了数组每一行的内容
+
+// 排序
+Arrays.sort(nums);
 
 // int数组的循环
 int[] nums = new int [];
