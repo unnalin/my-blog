@@ -115,6 +115,10 @@ ans.isEmpty() // 判断是否为空
 ans.size() // list大小
 
 int[][] res = ans.toArray(new int[ans.size()][]); // 转二维array
+
+
+# 对于二维的arraylist，获取其中的值要使用两次.get()
+int res = list.get(0).get(0)
 ```
 
 ### Set (无序，不可重复)
@@ -136,8 +140,24 @@ boolean hasKey = map.containsKey("Java");
 // 遍历
 for (String key : map.keySet()) { ... } // 遍历键
 for (Map.Entry<String, Integer> entry : map.entrySet()) { ... } // 遍历键值对
+
+// 一个语法糖：
+Map<Character, Character> = new HashMap<Character, Character>(){{
+    put(')', '(');
+    put('[', ']');
+    put('{', '}');
+}};
+
+// 等价于
+// 常规写法：先创建对象，再逐个 put
+Map<Character, Character> pairs = new HashMap<Character, Character>();
+pairs.put(')', '(');
+pairs.put(']', '[');
+pairs.put('}', '{');
+
 ```
-## 常用函数
+
+## 5. 常用函数
 ### 排序
 ```java
 // 对数组 第一个是要排序的数组，第二个参数是比较器 Comparator，定义排序规则
@@ -149,3 +169,105 @@ Arrays.sort(array, Comparator.comparingInt(a -> a[0]));
 Arrays.sort(intervals, Comparator.comparingInt(a -> a[0]).reversed());
 // 此外，如果起始值相同，我们可能还需要按照第二个元素（结束值）进行排序，那么我们可以使用thenComparing方法：
 Arrays.sort(intervals, Comparator.comparingInt(a -> a[0]).thenComparingInt(a -> a[1]));
+```
+
+## 6. 一些数据结构
+### 栈
+
+栈（Stack）是一种遵循 **后进先出（LIFO, Last In First Out）** 原则的线性数据结构，只能在栈顶进行元素的添加（入栈）和删除（出栈）操作。
+
+在 Java 中，官方推荐使用 `Deque`（双端队列）接口结合其实现类（如 `LinkedList`/`ArrayDeque`）来实现栈功能，而非直接使用老旧的 `Stack` 类（`Stack` 类继承自 `Vector`，设计存在缺陷）。
+
+
+**栈的声明与初始化**
+核心语法：`Deque<数据类型> 栈名 = new 实现类<数据类型>();`
+```java
+import java.util.Deque;
+import java.util.LinkedList;
+
+// 1. 声明字符类型的栈（最常用）
+Deque<Character> charStack = new LinkedList<Character>();
+
+// 2. 声明整数类型的栈
+Deque<Integer> intStack = new LinkedList<Integer>();
+
+// 3. 更高效的实现类（ArrayDeque，基于数组）
+Deque<String> strStack = new ArrayDeque<String>();
+```
+
+**语法说明**
+| 部分                | 含义                                                                 |
+|---------------------|----------------------------------------------------------------------|
+| `Deque`             | 双端队列接口，定义了栈的核心操作方法（push/pop/peek 等）|
+| `<Character>`       | 泛型，限定栈中只能存放指定类型的元素（避免类型错误）|
+| `stack`             | 栈的变量名，可自定义（如 charStack、intStack）|
+| `new LinkedList<>()`| 创建实现类对象，LinkedList/ArrayDeque 均实现了 Deque 接口             |
+
+**基本操作函数**
+| 方法名       | 功能描述                                  | 返回值/说明                     |
+|--------------|-------------------------------------------|---------------------------------|
+| `push(E e)`  | 入栈（将类型E的元素e压入栈顶）         | 无返回值，失败抛异常            |
+| `pop()`      | 出栈（移除并返回栈顶元素）                | 返回栈顶元素，栈空抛异常        |
+| `peek()`     | 查看栈顶元素（不移除）                    | 返回栈顶元素，栈空返回 null     |
+| `isEmpty()`  | 判断栈是否为空                            | 空返回 true，非空返回 false     |
+| `size()`     | 获取栈中元素个数                          | 返回 int 类型的元素数量         |
+| `clear()`    | 清空栈中所有元素                          | 无返回值                        |
+
+**示例代码**
+```java
+import java.util.Deque;
+import java.util.LinkedList;
+
+/**
+ * Java 栈（Deque实现）示例
+ */
+public class StackDemo {
+    public static void main(String[] args) {
+        // 1. 初始化一个字符类型的栈
+        Deque<Character> stack = new LinkedList<>();
+
+        // 2. 入栈操作（push）
+        stack.push('A');
+        stack.push('B');
+        stack.push('C');
+        System.out.println("入栈后栈内容：" + stack); // 输出 [C, B, A]（栈顶是C）
+
+        // 3. 查看栈顶元素（peek）
+        Character top = stack.peek();
+        System.out.println("栈顶元素：" + top); // 输出 C
+
+        // 4. 出栈操作（pop）
+        Character popEle = stack.pop();
+        System.out.println("出栈元素：" + popEle); // 输出 C
+        System.out.println("出栈后栈内容：" + stack); // 输出 [B, A]
+
+        // 5. 判断栈是否为空（isEmpty）
+        boolean isEmpty = stack.isEmpty();
+        System.out.println("栈是否为空：" + isEmpty); // 输出 false
+
+        // 6. 获取栈大小（size）
+        int size = stack.size();
+        System.out.println("栈元素个数：" + size); // 输出 2
+
+        // 7. 清空栈（clear）
+        stack.clear();
+        System.out.println("清空后栈是否为空：" + stack.isEmpty()); // 输出 true
+    }
+}
+```
+
+输出结果
+```
+入栈后栈内容：[C, B, A]
+栈顶元素：C
+出栈元素：C
+出栈后栈内容：[B, A]
+栈是否为空：false
+栈元素个数：2
+清空后栈是否为空：true
+```
+
+**注意事项**
+1. 避免使用 `java.util.Stack` 类：该类是早期设计的栈实现，继承自 `Vector`，方法线程安全但效率低，且不符合面向接口编程的规范。
+2. 空栈调用 `pop()` 会抛 `NoSuchElementException`：建议先通过 `isEmpty()` 判断栈是否为空，再执行出栈操作。
+3. `ArrayDeque` 比 `LinkedList` 更高效：如果不需要链表的额外功能，优先使用 `ArrayDeque` 实现栈（基于数组，访问速度更快）。
