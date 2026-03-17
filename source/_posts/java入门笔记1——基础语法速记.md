@@ -122,13 +122,23 @@ int res = list.get(0).get(0)
 ```
 
 ### Set (无序，不可重复)
+#### HashSet：Set 接口的最常用实现类
+- 底层依赖 HashMap 实现（本质是 “只存 Key、Value 固定为一个空对象” 的 HashMap）；
+- 无序：元素没有固定的存储 / 遍历顺序；
+- 不可重复：通过哈希值保证元素唯一，重复添加会失效；
+- 允许存储 null 值（但只能存一个）。
 ```java
 Set<Integer> set = new HashSet<>();
 set.add(1);
-set.add(1); // 无效，重复
+set.add(1); // 无效，重复，返回false
 ```
 
 ### Map (键值对)
+#### 哈希表 HashMap
+- 无序：存入和取出的顺序可能不一致；
+- 线程不安全：多线程同时操作时可能出问题（需用 ConcurrentHashMap 替代）；
+- Key 不能重复：重复 put 同一个 Key，会覆盖原来的 Value；
+- Key/Value 可以为 null（Hashtable 不允许 null，但是已经不咋用hashtable了）。
 ```java
 Map<String, Integer> map = new HashMap<>();
 HashMap<Character, Integer> map2 = new HashMap<Character, Integer>();
