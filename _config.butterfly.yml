@@ -1,0 +1,12 @@
+# Butterfly 主题配置覆盖文件
+# 此文件优先级高于 themes/butterfly/_config.yml，升级主题时不会被覆盖
+
+# Mermaid 图表支持
+# https://github.com/mermaid-js/mermaid
+mermaid:
+  enable: true
+  # code_write: true 表示可以直接用 ```mermaid 代码块语法写图，无需 {% mermaid %} 标签
+  code_write: true
+  theme:
+    light: default
+    dark: dark
